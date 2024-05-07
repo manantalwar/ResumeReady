@@ -1,0 +1,44 @@
+{% extends 'details/base.html'%}
+
+{% block content %}
+
+<center>
+    <h1>Update Contact Details</h1>
+
+    {% if user.is_authenticated %}
+
+        <br>
+
+        Logged in user: {{ user }}
+        
+        <br>
+
+        {% if submitted %}
+
+        You have already submitted this information!
+
+        {% else %}
+
+
+            <form action="" method="post">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <input type="submit" value="Submit" class="btn btn-secondary">
+
+            </form>
+
+        {% endif %}
+    
+    {% else %}
+
+        <h2> You need to be authenticated to access this page!</h2>
+
+    {% endif %}
+
+
+</center>
+
+{% endblock %}

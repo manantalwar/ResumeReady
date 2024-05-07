@@ -1,0 +1,45 @@
+{% extends 'details/base.html'%}
+
+{% block content %}
+
+<center>
+    <h1>Contact Details</h1>
+
+    {% if user.is_authenticated %}
+
+      <br>
+
+      {% for contact in contact_list %}
+
+          <br>
+
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Test</h5>
+                <p class="card-text"></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ contact.phone }}</li>
+                <li class="list-group-item">{{ contact.linkedin }} </li>
+                <li class="list-group-item">{{ contact.website }}</li>
+                <li class="list-group-item">{{ contact.address }} </li>
+                <div class="card-body">
+                  <a href="{% url 'update-contact' contact.id %}" class="card-link">Update Contact</a>
+                  <a href="{% url 'remove-contact' contact.id %}" class="card-link">Remove Contact</a>
+                </div>
+              </ul>
+            </div>
+
+          <br>
+
+      {% endfor %}
+    
+    {% else %}
+
+      <h2> You need to be authenticated to access this page!</h2>
+
+    {% endif %}
+
+</center>
+
+{% endblock %}
