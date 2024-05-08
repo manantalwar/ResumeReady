@@ -7,4 +7,5 @@ urlpatterns = [
     path('view_contact', views.view_contact, name='view-contact'),
     path('update_contact/<contact_id>', views.update_contact, name='update-contact'),
     path('remove_contact/<contact_id>', views.remove_contact, name='remove-contact'),
+    path('add_experience', views.add_experience, name='add-experience')
 ]

@@ -4,6 +4,7 @@ from .forms import ContactForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .forms import ExperienceForm
 
 # Create your views here.
 
@@ -42,9 +43,21 @@ def remove_contact(request, contact_id):
     return redirect('view-contact')
     
 
-
-
-
+def add_experience(request):
+    submitted = False
+    if request.method == "POST":
+        form = ExperienceForm(request.POST)
+        if form.is_valid():
+            experience = form.save(commit=False)
+            experience.owner = request.user.id
+            experience.save()
+            # form.save()
+            return HttpResponseRedirect('/add_experience?submitted=True')
+    else: 
+        form = ExperienceForm
+        if 'submitted' in request.GET:
+            submitted = True 
+    return render(request, 'details/add_experience.html', {'form': form, 'submitted': submitted})
 
 
 

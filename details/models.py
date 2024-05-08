@@ -19,6 +19,8 @@ class Experience(models.Model):
     start_date = models.DateField('Start Date')
     end_date = models.DateField('End Date')
     description = models.TextField(blank=True)
+    owner = models.IntegerField('Experience Owner', blank=False, default=1)
+
 
     def __str__(self) -> str:
         return self.role

@@ -1,0 +1,41 @@
+{% extends 'details/base.html'%}
+
+{% block content %}
+
+<center>
+    <h1>Add Experience Details</h1>
+
+    <br> 
+
+    {% if user.is_authenticated %}
+
+        ID: {{ user.id }}
+
+        {% if submitted %}
+
+        You have already submitted this information!
+
+        {% else %}
+
+
+            <form action="" method="post">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <input type="submit" value="Submit" class="btn btn-secondary">
+
+            </form>
+
+        {% endif %}
+
+    {% else %}
+
+            <h2> You need to be authenticated to access this page!</h2>
+
+    {% endif %}
+
+</center>
+
+{% endblock %}
