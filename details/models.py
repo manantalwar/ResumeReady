@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 
 class Contact(models.Model):
+    first_name = models.CharField('First Name', max_length=100)
+    last_name = models.CharField('Last Name', max_length=100)
     phone = models.CharField('Phone', max_length=10)
     linkedin = models.URLField('LinkedIn')
     website = models.URLField('Website')

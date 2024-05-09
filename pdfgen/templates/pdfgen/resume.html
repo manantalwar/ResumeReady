@@ -1,19 +1,103 @@
-{% extends "pdfgen/base.html" %}
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<div class="container">
+	<header>
+		<h1 id="name">{{ contacts.first_name}} {{ contacts.last_name}}</h1>
+		
+		<!-- <div id="designation">
+		
+			<span class="title">your designation</span>
+			<span class="organization">The organisation name</span>
+		
+		</div> -->
+		
+		<div class="contact">
+			<div class="email">Phone: {{ contacts.phone }} | LinkedIn: {{ contacts.linkedin }} | Website: {{ contacts.website }} | Address: {{ contacts.address }} </div>
+		</div>
+		
+	</header>
 
-{% block extra_style %}
-    <style type="text/css">
-        body {
-            font-family: "Helvetica", "sans-serif";
-            color: #333333;
-        }
-    </style>
-{% endblock %}
+    <br>
+	
+	<div class="content" role=main>
+	
+		<!-- <section id="objective">
+			<h2 class="title">Objective</h2>
+			<div class="description">
+				<p>
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+				</p>			
+			</div> 
+		</section> -->
+		
+		<section id="Education">
+			<h2 class="title">Education</h2>
+			<div class="description">
 
-{% block content %}
-    <div id="content">
-        <div class="main">
-            <h1>Hi there!</h1>
-            <img src="file:///STATIC_ROOT/img/hello.png" />
-        </div>
-    </div>
-{% endblock %}
+                {% for educ in education %}
+				
+                    <section class="project">
+                        <h3 class="title"> {{ educ.degree }} in {{ educ.major }}</h3>
+                        <h4 class="title"> {{ educ.institution }}</h4>
+                        <h4> GPA: {{ educ.gpa}}</h4>
+                        <div class="meta">
+                           <span class="date"> {{ educ.start_date }} - {{ educ.end_date }}</span>
+                        </div>
+                        <p class="description"> Relevant Coursework: {{ educ.coursework }} </p>
+                    </section> 
+                    <br>
+                
+                {% endfor %}
+			
+			</div> 
+		</section>
+			
+		<section id="projects">
+			<h2 class="title">Experience</h2>
+			<div class="description">
+
+                {% for exp in experiences %}
+				
+                    <section class="project">
+                        <h3 class="title"> {{ exp.role }}</h3>
+                        <h4 class="title"> {{ educ.company }}</h4>
+                        <div class="meta">
+                        <span class="date"> {{ exp.start_date }} - {{ exp.end_date }}</span>
+                        </div>    
+                        <p class="description"> {{ exp.description }} </p>
+                    </section> 
+                    <br>
+
+                {% endfor %}
+				
+				</div> 
+		</section>	
+
+        <section id="projects">
+			<h2 class="title">Skills</h2>
+			<div class="description">
+                    <section class="project">
+                        {% for s in sk %}
+                            <p class="description"> {{ s.skills }} </p>
+                        {% endfor %}
+                    </section> 
+				</div> 
+		</section>	
+	
+
+
+	
+	
+	
+	</div> 
+	</div> 
+	
+</body>
+</html>

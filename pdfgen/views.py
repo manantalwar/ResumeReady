@@ -3,7 +3,7 @@ from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch 
 from reportlab.lib.pagesizes import letter
-from details.models import Contact, Experience, Education
+from details.models import Contact, Experience, Education, Skills
 import io 
 from django.contrib.auth.models import User
 
@@ -129,3 +129,14 @@ def create_pdf(request):
     doc.build(story)
     buf.seek(0)
     return FileResponse(buf, as_attachment='resume.pdf')
+
+def test_view(request):
+    # Fetch data from models
+    contacts = Contact.objects.filter(owner=request.user.id)[0]
+    experiences = Experience.objects.filter(owner=request.user.id).order_by('-start_date')
+    education = Education.objects.filter(owner=request.user.id).order_by('-start_date')
+    sk = Skills.objects.filter(owner=request.user.id)
+    # desc = [elem.description for elem in experiences]
+    # res = [x.split('.') for x in desc]
+    # res = [[x.strip() for x in lis] for lis in res]
+    return render(request, 'pdfgen/resume.html', {'contacts': contacts, 'experiences': experiences, 'education': education, 'sk':sk})

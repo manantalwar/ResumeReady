@@ -3,5 +3,5 @@ from django.contrib import admin
 from . import views 
 
 urlpatterns = [
-    path('create_pdf', views.create_pdf, name='create-pdf'),
+    path('create_pdf', views.test_view, name='create-pdf'),
 ]
