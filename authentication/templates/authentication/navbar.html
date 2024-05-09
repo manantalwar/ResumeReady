@@ -22,6 +22,18 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'create-pdf' %}">Create PDF</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add-experience' %}">Add Experience</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'view-experience' %}">View Experience</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add-education' %}">Add Education</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'view-education' %}">View Education</a>
+          </li>
       {% else %}
           <li class="nav-item">
               <a class="nav-link" href="{% url 'login' %}">Login</a>

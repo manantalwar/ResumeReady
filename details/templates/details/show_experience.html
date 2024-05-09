@@ -1,0 +1,46 @@
+{% extends 'details/base.html'%}
+
+{% block content %}
+
+<center>
+    <h1>Experience Details</h1>
+
+    {% if user.is_authenticated %}
+
+      <br>
+
+      {% for exp in exp_list %}
+
+          <br>
+
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Test</h5>
+                <p class="card-text"></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ exp.role }}</li>
+                <li class="list-group-item">{{ exp.company }} </li>
+                <li class="list-group-item">{{ exp.start_date }}</li>
+                <li class="list-group-item">{{ exp.end_date }} </li>
+                <li class="list-group-item">{{ exp.description }} </li>
+                <div class="card-body">
+                  <a href="{% url 'update-experience' exp.id %}" class="card-link">Update Experience</a>
+                  <a href="{% url 'remove-experience' exp.id %}" class="card-link">Remove Experience</a>
+                </div>
+              </ul>
+            </div>
+
+          <br>
+
+      {% endfor %}
+    
+    {% else %}
+
+      <h2> You need to be authenticated to access this page!</h2>
+
+    {% endif %}
+
+</center>
+
+{% endblock %}

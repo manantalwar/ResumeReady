@@ -1,0 +1,48 @@
+{% extends 'details/base.html'%}
+
+{% block content %}
+
+<center>
+    <h1>Education Details</h1>
+
+    {% if user.is_authenticated %}
+
+      <br>
+
+      {% for educ in educ_list %}
+
+          <br>
+
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Test</h5>
+                <p class="card-text"></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ educ.degree }}</li>
+                <li class="list-group-item">{{ educ.major }} </li>
+                <li class="list-group-item">{{ educ.institution }} </li>
+                <li class="list-group-item">{{ educ.start_date }}</li>
+                <li class="list-group-item">{{ educ.end_date }} </li>
+                <li class="list-group-item">{{ educ.coursework }} </li>
+                <li class="list-group-item">{{ educ.gpa }} </li>
+                <div class="card-body">
+                  <a href="{% url 'update-education' educ.id %}" class="card-link">Update Education</a>
+                  <a href="{% url 'remove-education' educ.id %}" class="card-link">Remove Education</a>
+                </div>
+              </ul>
+            </div>
+
+          <br>
+
+      {% endfor %}
+    
+    {% else %}
+
+      <h2> You need to be authenticated to access this page!</h2>
+
+    {% endif %}
+
+</center>
+
+{% endblock %}

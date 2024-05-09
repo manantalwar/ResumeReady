@@ -19,6 +19,7 @@ class Experience(models.Model):
     start_date = models.DateField('Start Date')
     end_date = models.DateField('End Date')
     description = models.TextField(blank=True)
+    owner = models.IntegerField('Contact Owner', blank=False, default=1)
 
     def __str__(self) -> str:
         return self.role
@@ -31,12 +32,14 @@ class Education(models.Model):
     end_date = models.DateField('End Date')
     coursework = models.TextField(blank=True)
     gpa = models.FloatField('GPA')
+    owner = models.IntegerField('Contact Owner', blank=False, default=1)
 
     def __str__(self) -> str:
         return self.degree
 
 class Skills(models.Model):
     skills = models.CharField(blank=True, max_length=500)
+    owner = models.IntegerField('Contact Owner', blank=False, default=1)
 
     def __str__(self) -> str:
         return self.skills
