@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from authentication.views import user_login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,4 +23,6 @@ urlpatterns = [
     path('auth/', include('authentication.urls')),
     path('', include('details.urls')),
     path('', include('pdfgen.urls')),
+    path('', user_login, name='home'),
+    path('home/', user_login, name='home')
 ]
