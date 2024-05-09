@@ -15,4 +15,8 @@ urlpatterns = [
     path('view_education', views.view_education, name='view-education'),
     path('update_education/<educ_id>', views.update_education, name='update-education'),
     path('remove_education/<educ_id>', views.remove_education, name='remove-education'),
+    path('add_skills', views.add_skills, name='add-skills'),
+    path('view_skills', views.view_skills, name='view-skills'),
+    path('update_skills/<skill_id>', views.update_skills, name='update-skills'),
+    path('remove_skills/<skill_id>', views.remove_skills, name='remove-skills'),
 ]

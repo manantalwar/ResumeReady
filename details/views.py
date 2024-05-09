@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Contact, Experience, Education, Skills
-from .forms import ContactForm, ExperienceForm, EducationForm
+from .forms import ContactForm, ExperienceForm, EducationForm, SkillsForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -106,3 +106,41 @@ def remove_education(request, educ_id):
     educ = Education.objects.get(pk=educ_id)
     educ.delete()
     return redirect('view-education')
+
+def add_skills(request):
+    submitted = False
+    if request.method == "POST":
+        form = SkillsForm(request.POST)
+        if form.is_valid():
+            skills = form.save(commit=False)
+            skills.owner = request.user.id
+            skills.save()
+            # form.save()
+            return HttpResponseRedirect('/add_skills?submitted=True')
+    else: 
+        form = SkillsForm
+        if 'submitted' in request.GET:
+            submitted = True 
+        return render(request, 'details/add_skills.html', {'form': form, 'submitted': submitted})
+    
+def view_skills(request):
+    skills_list = Skills.objects.filter(owner=request.user.id)
+    # skills_list = [elem.skills for elem in skills_list]
+    # skills_list = sum(skills_list, [])
+    # temp = [elem.split(',') for elem in skills_list]
+    # res = sum(temp, [])
+    # ret = [elem.strip() for elem in res]
+    return render(request, 'details/show_skills.html', {'skills_list': skills_list})
+
+def update_skills(request, skill_id):
+    skill = Skills.objects.get(pk=skill_id)
+    form = SkillsForm(request.POST or None, instance=skill)
+    if form.is_valid():
+        form.save()
+        return redirect('view-skills')
+    return render(request, 'details/update_skills.html', {'form': form, 'skill': skill})
+
+def remove_skills(request, skill_id):
+    skill = Skills.objects.get(pk=skill_id)
+    skill.delete()
+    return redirect('view-skills')

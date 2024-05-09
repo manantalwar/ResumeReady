@@ -17,7 +17,7 @@ class EducationForm(ModelForm):
         model = Education
         fields = ('degree', 'major', 'institution', 'start_date', 'end_date', 'coursework', 'gpa')
 
-# class SkillsForm(ModelForm):
-#     class Meta:
-#         model = Skills
-#         fields = ('skills', )
+class SkillsForm(ModelForm):
+    class Meta:
+        model = Skills
+        fields = ('skills', )

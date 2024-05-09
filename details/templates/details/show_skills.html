@@ -1,0 +1,42 @@
+{% extends 'details/base.html'%}
+
+{% block content %}
+
+<center>
+    <h1>Skills Details</h1>
+
+    {% if user.is_authenticated %}
+
+      <br>
+
+      {% for skill in skills_list %}
+
+          <br>
+
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Test</h5>
+                <p class="card-text"></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ skill.skills }} </li>
+                <div class="card-body">
+                  <a href="{% url 'update-skills' skill.id %}" class="card-link">Update Skills</a>
+                  <a href="{% url 'remove-skills' skill.id %}" class="card-link">Remove Skills</a>
+                </div>
+              </ul>
+            </div>
+
+          <br>
+
+      {% endfor %}
+    
+    {% else %}
+
+      <h2> You need to be authenticated to access this page!</h2>
+
+    {% endif %}
+
+</center>
+
+{% endblock %}
