@@ -14,14 +14,12 @@
           <br>
 
           <div class="card" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Test</h5>
-                <p class="card-text"></p>
-              </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">{{ skill.skills }} </li>
                 <div class="card-body">
                   <a href="{% url 'update-skills' skill.id %}" class="card-link">Update Skills</a>
+                  <br>
+                  <br>
                   <a href="{% url 'remove-skills' skill.id %}" class="card-link">Remove Skills</a>
                 </div>
               </ul>

@@ -14,17 +14,15 @@
           <br>
 
           <div class="card" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Test</h5>
-                <p class="card-text"></p>
-              </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">{{ contact.phone }}</li>
-                <li class="list-group-item">{{ contact.linkedin }} </li>
-                <li class="list-group-item">{{ contact.website }}</li>
-                <li class="list-group-item">{{ contact.address }} </li>
+                <li class="list-group-item">Phone: {{ contact.phone }}</li>
+                <li class="list-group-item">LinkedIn: {{ contact.linkedin }} </li>
+                <li class="list-group-item">Website: {{ contact.website }}</li>
+                <li class="list-group-item">Address: {{ contact.address }} </li>
                 <div class="card-body">
                   <a href="{% url 'update-contact' contact.id %}" class="card-link">Update Contact</a>
+                  <br>
+                  <br>
                   <a href="{% url 'remove-contact' contact.id %}" class="card-link">Remove Contact</a>
                 </div>
               </ul>

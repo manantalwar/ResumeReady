@@ -14,20 +14,18 @@
           <br>
 
           <div class="card" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Test</h5>
-                <p class="card-text"></p>
-              </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">{{ educ.degree }}</li>
-                <li class="list-group-item">{{ educ.major }} </li>
-                <li class="list-group-item">{{ educ.institution }} </li>
-                <li class="list-group-item">{{ educ.start_date }}</li>
-                <li class="list-group-item">{{ educ.end_date }} </li>
-                <li class="list-group-item">{{ educ.coursework }} </li>
-                <li class="list-group-item">{{ educ.gpa }} </li>
+                <li class="list-group-item">Degree: {{ educ.degree }}</li>
+                <li class="list-group-item">Major: {{ educ.major }} </li>
+                <li class="list-group-item">Institution: {{ educ.institution }} </li>
+                <li class="list-group-item">Start Date: {{ educ.start_date }}</li>
+                <li class="list-group-item">End Date: {{ educ.end_date }} </li>
+                <li class="list-group-item">Coursework: {{ educ.coursework }} </li>
+                <li class="list-group-item">GPA: {{ educ.gpa }} </li>
                 <div class="card-body">
                   <a href="{% url 'update-education' educ.id %}" class="card-link">Update Education</a>
+                  <br>
+                  <br>
                   <a href="{% url 'remove-education' educ.id %}" class="card-link">Remove Education</a>
                 </div>
               </ul>
