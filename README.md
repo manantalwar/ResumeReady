@@ -47,6 +47,10 @@ The app runs at http://127.0.0.1:8000/.
 - You may need to set `BASE_DIR` path in `settings.py` in `cs520proj` directory depending on your system configuration. 
 - You may need to set `SECRET_KEY` for the application to work correctly.
 
+## Demo Video
+
+- Link: TBD
+
 ## Contributors 
 
 - Manan Talwar

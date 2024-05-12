@@ -1,10 +1,12 @@
-from django.test import TestCase
 from model_bakery import baker
-from pprint import pprint
 from .models import Education, Contact, Experience, Skills, Jobs
 from django.core.exceptions import ValidationError
 from django.db.models import URLField, DateField
 from django.utils import timezone
+from django.test import TestCase, Client
+from django.urls import reverse
+from .forms import ContactForm
+from django.contrib.auth.models import User
 
 # Create your tests here.
 
@@ -515,3 +517,75 @@ class JobsInstanceTests(TestCase):
     def test_job_owner_default_value(self):
         job = Jobs.objects.create(description="Data Scientist", qualifications="Master's degree in Statistics", owner=1)
         self.assertEqual(job.owner, 1)
+
+# Views 
+
+class AddContactViewTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user1 = User.objects.create_user(username='test_user', password='test_password')
+        self.user2 = User.objects.create_user(username='test_user_2', password='test_password_2')
+        self.user1.save()
+        self.user2.save()    
+
+    def test_get_request(self):
+        response = self.client.get(reverse('add-contact'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/add_contact.html')
+        self.assertFalse(response.context['submitted'])
+
+    
+    def test_post_request_valid_form(self):
+        self.client.login(username='test_user', password='test_password')
+        data = {
+            'first_name': 'John',
+            'last_name': 'Doe',
+            'phone': '1234567890',
+            'linkedin': 'https://www.linkedin.com/in/johndoe',
+            'website': 'https://www.example.com',
+            'address': '123 Main St',
+        }
+        response = self.client.post('add-contact', data)
+        print(response.content)
+        self.assertEqual(response.status_code, 302) 
+        #self.assertTrue(Contact.objects.filter(first_name='John').exists())
+
+    def test_get_request_submitted(self):
+        response = self.client.get(reverse('add-contact') + '?submitted=True')
+        self.assertTrue(response.context['submitted'])
+
+
+class UpdateContactViewTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user1 = User.objects.create_user(username='test_user', password='test_password')
+        self.user2 = User.objects.create_user(username='test_user_2', password='test_password_2')
+        self.user1.save()
+        self.user2.save()
+        # self.client.login(username='test_user', password='test_password')
+        self.contact = Contact.objects.create(
+            first_name='John',
+            last_name='Doe',
+            phone='1234567890',
+            linkedin='https://www.linkedin.com/in/johndoe',
+            website='https://www.example.com',
+            address='123 Main St',
+            owner=1
+        )
+        self.contact.save()
+    
+    
+    def test_post_request_valid_form(self):
+        self.client.login(username='test_user', password='test_password')
+        data = {
+            'first_name': 'Test',
+            'last_name': 'Doe',
+            'phone': '1234567890',
+            'linkedin': 'https://www.linkedin.com/in/johndoe',
+            'website': 'https://www.example.com',
+            'address': '123 Main St',
+            'owner':1,
+        }
+        response = self.client.post(reverse('update-contact'), data, kwargs={'pk': self.contact.pk})
+        self.assertEqual(response.status_code, 302) 
+        self.assertTrue(Contact.objects.filter(first_name='Test').exists())
