@@ -589,3 +589,87 @@ class UpdateContactViewTestCase(TestCase):
         response = self.client.post(reverse('update-contact'), data, kwargs={'pk': self.contact.pk})
         self.assertEqual(response.status_code, 302) 
         self.assertTrue(Contact.objects.filter(first_name='Test').exists())
+
+class ContactViewsTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.client = Client()
+        self.client.login(username='testuser', password='password')
+
+    def test_add_contact_view(self):
+        response = self.client.get(reverse('add-contact'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/add_contact.html')
+
+    def test_view_contact_view(self):
+        response = self.client.get(reverse('view-contact'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/show_contact.html')
+
+class ExperienceViewsTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.client = Client()
+        self.client.login(username='testuser', password='password')
+
+    def test_add_experience_view(self):
+        response = self.client.get(reverse('add-experience'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/add_experience.html')
+
+    def test_view_experience_view(self):
+        response = self.client.get(reverse('view-experience'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/show_experience.html')
+
+
+class EducationViewsTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.client = Client()
+        self.client.login(username='testuser', password='password')
+
+    def test_add_education_view(self):
+        response = self.client.get(reverse('add-education'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/add_education.html')
+
+    def test_view_education_view(self):
+        response = self.client.get(reverse('view-education'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/show_education.html')
+
+
+class SkillsViewsTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.client = Client()
+        self.client.login(username='testuser', password='password')
+
+    def test_add_skills_view(self):
+        response = self.client.get(reverse('add-skills'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/add_skills.html')
+
+    def test_view_skills_view(self):
+        response = self.client.get(reverse('view-skills'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/show_skills.html')
+
+
+class JobsViewsTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.client = Client()
+        self.client.login(username='testuser', password='password')
+
+    def test_add_job_view(self):
+        response = self.client.get(reverse('add-job'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/add_job.html')
+
+    def test_view_jobs_view(self):
+        # Test view jobs view
+        response = self.client.get(reverse('view-jobs'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/show_jobs.html')

@@ -71,4 +71,59 @@ class RegisterUsersFormTest(TestCase):
 
 # Views 
 
+class AuthenticationViewsTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_user_login_view_get(self):
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'authentication/login.html')
+
+
+    def test_user_login_view_post_failure(self):
+        data = {
+            'username': 'nonexistentuser',
+            'password': 'invalidpassword',
+        }
+        response = self.client.post(reverse('login'), data)
+        self.assertRedirects(response, reverse('login')) 
+
+    def test_user_logout_view(self):
+        response = self.client.get(reverse('logout'))
+        self.assertRedirects(response, reverse('login')) 
+
+    def test_user_register_view_get(self):
+        response = self.client.get(reverse('register'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'authentication/register.html')
+
+    def test_user_register_view_post_success(self):
+        data = {
+            'username': 'newuser',
+            'first_name': 'John',
+            'last_name': 'Doe',
+            'password1': 'testpassword',
+            'password2': 'testpassword',
+        }
+        response = self.client.post(reverse('register'), data)
+        self.assertRedirects(response, reverse('login'))
+
+    def test_user_register_view_post_password_mismatch(self):
+        data = {
+            'username': 'newuser',
+            'first_name': 'John',
+            'last_name': 'Doe',
+            'password1': 'testpassword1',
+            'password2': 'testpassword2',
+        }
+        response = self.client.post(reverse('register'), data)
+        self.assertEqual(response.status_code, 200)  
+
+
+    def test_user_register_view_invalid_form(self):
+        data = {}
+        response = self.client.post(reverse('register'), data)
+        self.assertEqual(response.status_code, 200) 
+
 
