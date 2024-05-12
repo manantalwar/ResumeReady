@@ -4,8 +4,11 @@ from django.test import TestCase, Client
 from django.contrib import messages
 from django.urls import reverse
 from model_bakery import baker
+from .views import user_login, user_logout, user_register
 
 # Create your tests here.
+
+# Forms
 
 class RegisterUsersFormTest(TestCase):
     def test_form_fields(self):
@@ -54,10 +57,7 @@ class RegisterUsersFormTest(TestCase):
         self.assertEqual(form.errors['password2'], ['The two password fields didn’t match.'])
         
     def test_username_already_exists(self):
-        # Create a user with the username 'existinguser'
         User.objects.create_user(username='existinguser', password='password')
-        
-        # Try to register a new user with the same username
         form_data = {
             'username': 'existinguser',
             'first_name': 'John',
@@ -68,4 +68,7 @@ class RegisterUsersFormTest(TestCase):
         form = RegisterUsersForm(data=form_data)
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['username'], ["A user with that username already exists."])
+
+# Views 
+
 
