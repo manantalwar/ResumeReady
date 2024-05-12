@@ -1,10 +1,13 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from model_bakery import baker
 from pprint import pprint
 from .models import Education, Contact, Experience, Skills, Jobs
 from django.core.exceptions import ValidationError
 from django.db.models import URLField, DateField
 from django.utils import timezone
+from django.urls import reverse
+from .forms import ContactForm, ExperienceForm, EducationForm, SkillsForm, JobsForm
+from django.contrib.auth.models import User
 
 # Create your tests here.
 
@@ -515,3 +518,107 @@ class JobsInstanceTests(TestCase):
     def test_job_owner_default_value(self):
         job = Jobs.objects.create(description="Data Scientist", qualifications="Master's degree in Statistics", owner=1)
         self.assertEqual(job.owner, 1)
+
+
+
+class ContactViewsTestCase(TestCase):
+    def setUp(self):
+        # Set up any necessary objects for testing, like users or initial data
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.client = Client()
+        self.client.login(username='testuser', password='password')
+
+    def test_add_contact_view(self):
+        response = self.client.get(reverse('add-contact'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/add_contact.html')
+
+    def test_view_contact_view(self):
+        # Test view contact view
+        response = self.client.get(reverse('view-contact'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/show_contact.html')
+        # Add more assertions if necessary
+    
+   
+
+class ExperienceViewsTestCase(TestCase):
+    def setUp(self):
+        # Set up any necessary objects for testing, like users or initial data
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.client = Client()
+        self.client.login(username='testuser', password='password')
+
+    def test_add_experience_view(self):
+        response = self.client.get(reverse('add-experience'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/add_experience.html')
+
+    def test_view_experience_view(self):
+        # Test view experience view
+        response = self.client.get(reverse('view-experience'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/show_experience.html')
+        # Add more assertions if necessary
+    
+    # Add tests for other views like update_experience, remove_experience, etc.
+
+class EducationViewsTestCase(TestCase):
+    def setUp(self):
+        # Set up any necessary objects for testing, like users or initial data
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.client = Client()
+        self.client.login(username='testuser', password='password')
+
+    def test_add_education_view(self):
+        response = self.client.get(reverse('add-education'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/add_education.html')
+
+    def test_view_education_view(self):
+        # Test view education view
+        response = self.client.get(reverse('view-education'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/show_education.html')
+        # Add more assertions if necessary
+    
+    # Add tests for other views like update_education, remove_education, etc.
+
+class SkillsViewsTestCase(TestCase):
+    def setUp(self):
+        # Set up any necessary objects for testing, like users or initial data
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.client = Client()
+        self.client.login(username='testuser', password='password')
+
+    def test_add_skills_view(self):
+        response = self.client.get(reverse('add-skills'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/add_skills.html')
+
+    def test_view_skills_view(self):
+        # Test view skills view
+        response = self.client.get(reverse('view-skills'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/show_skills.html')
+        # Add more assertions if necessary
+    
+    
+
+class JobsViewsTestCase(TestCase):
+    def setUp(self):
+        # Set up any necessary objects for testing, like users or initial data
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.client = Client()
+        self.client.login(username='testuser', password='password')
+
+    def test_add_job_view(self):
+        response = self.client.get(reverse('add-job'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/add_job.html')
+
+    def test_view_jobs_view(self):
+        # Test view jobs view
+        response = self.client.get(reverse('view-jobs'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'details/show_jobs.html')
