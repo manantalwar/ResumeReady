@@ -83,6 +83,7 @@ class Skills(models.Model):
 class Jobs(models.Model):
     description = models.TextField(blank=True)
     qualifications = models.TextField(blank=True)
+    specifications = models.TextField(blank=True)
     owner = models.IntegerField('Job Owner', blank=False, default=1)
 
     def __str__(self) -> str:

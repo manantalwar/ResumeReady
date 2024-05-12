@@ -16,7 +16,6 @@ def user_login(request):
         else:
             messages.success(request, ('Error Logging In.'))
             return redirect('login')
-    
     else: 
         return render(request, 'authentication/login.html', {})
     
@@ -27,7 +26,6 @@ def user_logout(request):
 
 def user_register(request):
     if request.method == 'POST':
-        # form = UserCreationForm(request.POST)
         form = RegisterUsersForm(request.POST)
         if form.is_valid():
             form.save()

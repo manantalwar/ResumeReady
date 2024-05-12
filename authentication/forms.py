@@ -10,7 +10,6 @@ class RegisterUsersForm(UserCreationForm):
         model = User 
         fields = ('username', 'first_name', 'last_name', 'password1', 'password2')
     
-    
     def __init__(self, *args, **kwargs):
         super(RegisterUsersForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['class'] = 'form-control'

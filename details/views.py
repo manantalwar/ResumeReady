@@ -15,7 +15,6 @@ def add_contact(request):
             contact = form.save(commit=False)
             contact.owner = request.user.id
             contact.save()
-            # form.save()
             return HttpResponseRedirect('/add_contact?submitted=True')
     else: 
         form = ContactForm
@@ -146,7 +145,8 @@ def view_home(request):
     skills = [elem.strip() for sublist in skills for elem in sublist]
     educ_list = Education.objects.filter(owner=request.user.id)
     exp_list = Experience.objects.filter(owner=request.user.id)
-    return render(request, 'details/home.html', {'first_name':first_name, 'last_name':last_name,'contact':contact_list, 'skills':skills, 'educ_list':educ_list, 'exp_list': exp_list})
+    jobs_list = Jobs.objects.filter(owner=request.user.id)
+    return render(request, 'details/home.html', {'first_name':first_name, 'last_name':last_name,'contact':contact_list, 'skills':skills, 'educ_list':educ_list, 'exp_list': exp_list, 'jobs_list':jobs_list})
 
 def add_job(request):
     submitted = False
@@ -171,3 +171,11 @@ def remove_jobs(request, job_id):
     job = Jobs.objects.get(pk=job_id)
     job.delete()
     return redirect('view-jobs')
+
+def update_jobs(request, job_id):
+    job = Jobs.objects.get(pk=job_id)
+    form = JobsForm(request.POST or None, instance=job)
+    if form.is_valid():
+        form.save()
+        return redirect('view-jobs')
+    return render(request, 'details/update_jobs.html', {'form': form, 'job': job})

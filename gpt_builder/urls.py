@@ -4,5 +4,5 @@ from authentication.views import user_login
 from . import views
 
 urlpatterns = [
-    path('view_res/<job_id>', views.test, name='view-res'),
+    path('view_res/<job_id>', views.view_res, name='view-res'),
 ]

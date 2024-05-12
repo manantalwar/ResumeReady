@@ -7,28 +7,43 @@
 
     {% if user.is_authenticated %}
 
-      <br>
+    <div class="container">
 
-      {% for job in jobs_list %}
 
-          <br>
 
-          <div class="card" style="width: 50rem;">
-              <ul class="list-group list-group-flush">
-                <h5>Description</h5>
-                <li class="list-group-item">{{ job.description }} </li>
-                <h5>Qualifications</h5>
-                <li class="list-group-item">{{ job.qualifications }} </li>
-                <div class="card-body">
-                  <a href="{% url 'view-res' job.id %}" class="card-link">Create Job Resume</a>
-                  <a href="{% url 'remove-jobs' job.id %}" class="card-link">Remove Job</a>
+                    {% for job in jobs_list %}
+                    <div class="row-lg m-5">
+                      <div class="card">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th>Job Description</th>
+                                <td>{{ job.description }}</td>
+                            </tr>
+                            <tr>
+                                <th>Job Qualifications</th>
+                                <td>{{ job.qualifications }}</td>
+                            </tr>
+                            <tr>
+                              <th>Resume Specifications (Optional)</th>
+                              <td>{{ job.specifications }}</td>
+                          </tr>
+                            </tbody>
+                        </table>
+
+
+                    <div class="card-body">
+                        <a href="{% url 'remove-jobs' job.id %}" class="card-link btn btn-warning">Remove Job</a>
+                        <a href="{% url 'update-jobs' job.id %}" class="card-link btn btn-warning">Update Job</a>
+                        <a href="{% url 'view-res' job.id %}" class="card-link btn btn-warning">Generate Resume</a>
+                    </div>
+        
+                  </div>
                 </div>
-              </ul>
+                {% endfor %}
             </div>
 
-          <br>
-
-      {% endfor %}
+               
     
     {% else %}
 

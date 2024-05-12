@@ -55,10 +55,11 @@ class SkillsForm(ModelForm):
 class JobsForm(ModelForm):
     class Meta:
         model = Jobs
-        fields = ('description', 'qualifications')
+        fields = ('description', 'qualifications', 'specifications')
     
     def __init__(self, *args, **kwargs):
         super(JobsForm, self).__init__(*args, **kwargs)
         self.fields['description'].widget.attrs['class'] = 'form-control'
         self.fields['qualifications'].widget.attrs['class'] = 'form-control'
+        self.fields['specifications'].widget.attrs['class'] = 'form-control'
 

@@ -1,0 +1,15 @@
+"filename", "language", "HTML", "Python", "comment", "blank", "total"
+"/Users/manan/Desktop/ResumeReady/authentication/__init__.py", "Python", 0, 0, 0, 1, 1
+"/Users/manan/Desktop/ResumeReady/authentication/admin.py", "Python", 0, 1, 1, 2, 4
+"/Users/manan/Desktop/ResumeReady/authentication/apps.py", "Python", 0, 4, 0, 3, 7
+"/Users/manan/Desktop/ResumeReady/authentication/forms.py", "Python", 0, 16, 0, 7, 23
+"/Users/manan/Desktop/ResumeReady/authentication/migrations/__init__.py", "Python", 0, 0, 0, 1, 1
+"/Users/manan/Desktop/ResumeReady/authentication/models.py", "Python", 0, 1, 1, 2, 4
+"/Users/manan/Desktop/ResumeReady/authentication/templates/authentication/base.html", "HTML", 30, 0, 4, 11, 45
+"/Users/manan/Desktop/ResumeReady/authentication/templates/authentication/login.html", "HTML", 23, 0, 0, 8, 31
+"/Users/manan/Desktop/ResumeReady/authentication/templates/authentication/navbar.html", "HTML", 49, 0, 0, 1, 50
+"/Users/manan/Desktop/ResumeReady/authentication/templates/authentication/register.html", "HTML", 25, 0, 0, 11, 36
+"/Users/manan/Desktop/ResumeReady/authentication/tests.py", "Python", 0, 1, 1, 2, 4
+"/Users/manan/Desktop/ResumeReady/authentication/urls.py", "Python", 0, 8, 0, 2, 10
+"/Users/manan/Desktop/ResumeReady/authentication/views.py", "Python", 0, 36, 1, 5, 42
+"Total", "-", 127, 67, 8, 56, 258

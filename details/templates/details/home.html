@@ -12,12 +12,12 @@
 <div class="container">
 
     <div class="card-group">
-        <div class="row">
+        <div class="row m-5">
             <div class="col">
                 <div class="card">
                     <img src="{% static '/details/contact.jpg' %}" class="card-img-top" alt="Contact">
                     <div class="card-body">
-                        <h5 class="card-title">Contact Details</h5>
+                        <h5 class="card-title">Your Contact Details</h5>
                         <br>
                         <table class="table">
                             <tbody>
@@ -49,6 +49,7 @@
                         </table>
                         <a href="{% url 'update-contact' contact.id %}" class="card-link btn btn-warning">Update Contact</a>
                         <a href="{% url 'remove-contact' contact.id %}" class="card-link btn btn-warning">Remove Contact</a>
+
                     </div>
                 </div>
 
@@ -60,7 +61,7 @@
                 <div class="card">
                     <img src="{% static '/details/skills.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Skills</h5>
+                        <h5 class="card-title">Your Skills</h5>
 
                             {% for sk in skills %}
 
@@ -76,12 +77,12 @@
 
         </div>
 
-        <div class="row">
+        <div class="row m-5">
             <div class="col">        
                 <div class="card">
                     <img src="{% static '/details/education.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Education</h5>
+                        <h5 class="card-title">Your Education</h5>
 
                         {% for educ in educ_list %}
 
@@ -137,12 +138,12 @@
         </div>
 
 
-        <div class="row">
+        <div class="row m-5">
             <div class="col">        
                 <div class="card">
                     <img src="{% static '/details/experience.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Experience</h5>
+                        <h5 class="card-title">Your Experiences</h5>
 
                         {% for exp in exp_list %}
 
@@ -188,6 +189,45 @@
                 </div>
             </div>
         </div>
+
+        <div class="row m-5">
+            <div class="col">        
+                <div class="card">
+                    <img src="{% static '/details/jobs.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Jobs</h5>
+
+                        {% for job in jobs_list %}
+
+                            <br>
+
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Job Description</th>
+                                    <td>{{ job.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Job Qualifications</th>
+                                    <td>{{ job.qualifications }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                        <div class="card-body">
+                            <a href="{% url 'remove-jobs' job.id %}" class="card-link btn btn-warning">Remove Job</a>
+                        </div>
+            
+                        <br>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
