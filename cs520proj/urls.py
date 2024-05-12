@@ -24,5 +24,5 @@ urlpatterns = [
     path('', include('details.urls')),
     path('', include('pdfgen.urls')),
     path('', user_login, name='home'),
-    path('home/', user_login, name='home')
+    path('home/', user_login, name='home'),
 ]

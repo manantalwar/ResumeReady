@@ -19,4 +19,5 @@ urlpatterns = [
     path('view_skills', views.view_skills, name='view-skills'),
     path('update_skills/<skill_id>', views.update_skills, name='update-skills'),
     path('remove_skills/<skill_id>', views.remove_skills, name='remove-skills'),
+    path('home', views.view_home, name='home')
 ]

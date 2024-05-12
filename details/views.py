@@ -24,7 +24,6 @@ def add_contact(request):
         return render(request, 'details/add_contact.html', {'form': form, 'submitted': submitted})
     
 def view_contact(request):
-    # contact_list = Contact.objects.filter(owner=request.user.id)
     contact_list = Contact.objects.filter(owner=request.user.id)
     return render(request, 'details/show_contact.html', {'contact_list': contact_list})
 
@@ -49,7 +48,6 @@ def add_experience(request):
             exp = form.save(commit=False)
             exp.owner = request.user.id
             exp.save()
-            # form.save()
             return HttpResponseRedirect('/add_experience?submitted=True')
     else: 
         form = ExperienceForm
@@ -82,7 +80,6 @@ def add_education(request):
             educ = form.save(commit=False)
             educ.owner = request.user.id
             educ.save()
-            # form.save()
             return HttpResponseRedirect('/add_education?submitted=True')
     else: 
         form = EducationForm
@@ -115,7 +112,6 @@ def add_skills(request):
             skills = form.save(commit=False)
             skills.owner = request.user.id
             skills.save()
-            # form.save()
             return HttpResponseRedirect('/add_skills?submitted=True')
     else: 
         form = SkillsForm
@@ -125,11 +121,6 @@ def add_skills(request):
     
 def view_skills(request):
     skills_list = Skills.objects.filter(owner=request.user.id)
-    # skills_list = [elem.skills for elem in skills_list]
-    # skills_list = sum(skills_list, [])
-    # temp = [elem.split(',') for elem in skills_list]
-    # res = sum(temp, [])
-    # ret = [elem.strip() for elem in res]
     return render(request, 'details/show_skills.html', {'skills_list': skills_list})
 
 def update_skills(request, skill_id):
@@ -144,3 +135,15 @@ def remove_skills(request, skill_id):
     skill = Skills.objects.get(pk=skill_id)
     skill.delete()
     return redirect('view-skills')
+
+def view_home(request):
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+    contact_list = Contact.objects.filter(owner=request.user.id)[0]
+    skills_list = Skills.objects.filter(owner=request.user.id)
+    skills = [elem.skills for elem in skills_list]
+    skills = [elem.split(',') for elem in skills]
+    skills = [elem.strip() for sublist in skills for elem in sublist]
+    educ_list = Education.objects.filter(owner=request.user.id)
+    exp_list = Experience.objects.filter(owner=request.user.id)
+    return render(request, 'details/home.html', {'first_name':first_name, 'last_name':last_name,'contact':contact_list, 'skills':skills, 'educ_list':educ_list, 'exp_list': exp_list})
