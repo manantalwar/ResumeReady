@@ -11,7 +11,7 @@ To get this project up and running on your local machine, follow these steps:
 1. Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/my-awesome-django-project.git
+git clone https://github.com/manantalwar/ResumeReady.git
 ```
 
 2. Navigate into the project directory
