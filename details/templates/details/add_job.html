@@ -2,15 +2,18 @@
 
 {% block content %}
 
-    <h1 align="center">Update Experience Details</h1>
 
-    {% if user.is_authenticated %}
+    <h1 align="center">Add Job Description</h1>
+
+    <br> 
+
+    {% if user.is_authenticated %}\
 
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="col col-lg-7">
+            <div class="col col-lg-7 shadow p-3 mb-5 bg-white rounded">
 
-            <form action="" method="post" class="shadow p-3 mb-5 bg-white rounded">
+            <form action="" method="post">
 
                 {% csrf_token %}
 
@@ -23,10 +26,10 @@
             </div>
             </div>
             </div>
-    
+
     {% else %}
 
-        <h2> You need to be authenticated to access this page!</h2>
+            <h2> You need to be authenticated to access this page!</h2>
 
     {% endif %}
 

@@ -1,53 +1,50 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #76a5afff;">
   <a class="navbar-brand" href="#" style="color: rgb(255, 255, 255);">ResumeReady</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'add-contact' %}">Add Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'view-contact' %}">View Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'create-pdf' %}">Display Resume</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add-experience' %}">Add Experience</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'view-experience' %}">View Experience</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add-education' %}">Add Education</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'view-education' %}">View Education</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add-skills' %}">Add Skills</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'view-skills' %}">View Skills</a>
-            </li>
-        {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'register' %}">Register</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
           </li>
-        {% endif %}
-      </ul>
-    </div>
-  </nav>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'add-contact' %}">Add Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add-experience' %}">Add Experience</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add-education' %}">Add Education</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add-skills' %}">Add Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'view-skills' %}">View Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'create-pdf' %}">Base Resume</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add-job' %}">Add Job </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'view-jobs' %}">Create Job Resume</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+      {% else %}
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Register</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

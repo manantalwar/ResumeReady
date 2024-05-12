@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'authentication', 
     'details', 
     'pdfgen',
+    'gpt_builder',
+    'g4f'
 ]
 
 MIDDLEWARE = [

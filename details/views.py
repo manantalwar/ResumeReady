@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Contact, Experience, Education, Skills
-from .forms import ContactForm, ExperienceForm, EducationForm, SkillsForm
+from .models import Contact, Experience, Education, Skills, Jobs
+from .forms import ContactForm, ExperienceForm, EducationForm, SkillsForm, JobsForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -147,3 +147,27 @@ def view_home(request):
     educ_list = Education.objects.filter(owner=request.user.id)
     exp_list = Experience.objects.filter(owner=request.user.id)
     return render(request, 'details/home.html', {'first_name':first_name, 'last_name':last_name,'contact':contact_list, 'skills':skills, 'educ_list':educ_list, 'exp_list': exp_list})
+
+def add_job(request):
+    submitted = False
+    if request.method == "POST":
+        form = JobsForm(request.POST)
+        if form.is_valid():
+            skills = form.save(commit=False)
+            skills.owner = request.user.id
+            skills.save()
+            return HttpResponseRedirect('/add_job?submitted=True')
+    else: 
+        form = JobsForm
+        if 'submitted' in request.GET:
+            submitted = True 
+        return render(request, 'details/add_job.html', {'form': form, 'submitted': submitted})
+    
+def view_jobs(request):
+    jobs_list = Jobs.objects.filter(owner=request.user.id)
+    return render(request, 'details/show_jobs.html', {'jobs_list': jobs_list})
+
+def remove_jobs(request, job_id):
+    job = Jobs.objects.get(pk=job_id)
+    job.delete()
+    return redirect('view-jobs')

@@ -19,5 +19,8 @@ urlpatterns = [
     path('view_skills', views.view_skills, name='view-skills'),
     path('update_skills/<skill_id>', views.update_skills, name='update-skills'),
     path('remove_skills/<skill_id>', views.remove_skills, name='remove-skills'),
-    path('home', views.view_home, name='home')
+    path('home', views.view_home, name='home'),
+    path('add_job', views.add_job, name='add-job'),
+    path('view_jobs', views.view_jobs, name='view-jobs'),
+    path('remove_jobs/<job_id>', views.remove_jobs, name='remove-jobs'),
 ]

@@ -3,22 +3,25 @@
 {% block content %}
 
 <center>
-    <h1>Skills Details</h1>
+    <h1>Jobs Details</h1>
 
     {% if user.is_authenticated %}
 
       <br>
 
-      {% for skill in skills_list %}
+      {% for job in jobs_list %}
 
           <br>
 
           <div class="card" style="width: 50rem;">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">{{ skill.skills }} </li>
+                <h5>Description</h5>
+                <li class="list-group-item">{{ job.description }} </li>
+                <h5>Qualifications</h5>
+                <li class="list-group-item">{{ job.qualifications }} </li>
                 <div class="card-body">
-                  <a href="{% url 'update-skills' skill.id %}" class="card-link">Update Skills</a>
-                  <a href="{% url 'remove-skills' skill.id %}" class="card-link">Remove Skills</a>
+                  <a href="{% url 'view-res' job.id %}" class="card-link">Create Job Resume</a>
+                  <a href="{% url 'remove-jobs' job.id %}" class="card-link">Remove Job</a>
                 </div>
               </ul>
             </div>

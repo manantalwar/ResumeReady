@@ -1,6 +1,6 @@
 from django import forms 
 from django.forms import ModelForm
-from .models import Contact, Experience, Education, Skills
+from .models import Contact, Experience, Education, Skills, Jobs
 
 class ContactForm(ModelForm):
     class Meta:
@@ -50,3 +50,15 @@ class SkillsForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(SkillsForm, self).__init__(*args, **kwargs)
         self.fields['skills'].widget.attrs['class'] = 'form-control'
+
+
+class JobsForm(ModelForm):
+    class Meta:
+        model = Jobs
+        fields = ('description', 'qualifications')
+    
+    def __init__(self, *args, **kwargs):
+        super(JobsForm, self).__init__(*args, **kwargs)
+        self.fields['description'].widget.attrs['class'] = 'form-control'
+        self.fields['qualifications'].widget.attrs['class'] = 'form-control'
+

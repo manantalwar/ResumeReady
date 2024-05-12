@@ -2,26 +2,27 @@
 
 {% block content %}
 
-<center>
-    <h1>Update Education Details</h1>
+    <h1 align="center">Update Education Details</h1>
 
     {% if user.is_authenticated %}
 
-        <br>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-7">
 
-        Logged in user: {{ user }}
-        
-        <br>
-
-            <form action="" method="post">
+            <form action="" method="post" class="shadow p-3 mb-5 bg-white rounded">
 
                 {% csrf_token %}
 
                 {{ form.as_p }}
 
-                <input type="submit" value="Submit" class="btn btn-secondary">
+                <center><input type="submit" value="Submit" class="btn btn-warning"></center>
 
             </form>
+
+            </div>
+            </div>
+            </div>
     
     {% else %}
 
