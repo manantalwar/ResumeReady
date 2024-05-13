@@ -56,7 +56,7 @@ The app runs at http://127.0.0.1:8000/.
 
 ## Demo Video
 
-- Link: TBD
+- Link: [Demo](https://drive.google.com/file/d/1e3Nwu7C2ETPhSpkcwux6LayNj1H19vrZ/view?usp=sharing)
 
 ## Contributors 
 
