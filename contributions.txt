@@ -6,11 +6,11 @@ Manan Talwar, Sonali Palit, and Bhoomika Raj Ethakota spearheaded the backend de
 - Manan worked on creating Models, Views, and Forms for details. 
 - Manan worked on creating Models, Views, and API for gpt_builder.
 - Bhoomika worked on creating Models, Views, and Forms for pdgen.
-- Bhoomika spearheaded development of test cases. 
+- Bhoomika and Arshnoor spearheaded development of test cases. 
 
 Arshnoor Kaur Chadha, Srikiran Kavuri spearheaded the frontend development. 
 
-- Arshnoor Kaur Chadha designed the interfaces for the Forms and Home for details, gpt_builder.
+- Arshnoor Kaur Chadha designed the interfaces for the Forms and Home for authentication, details, gpt_builder.
 - Srkirain Kavuri designed the interfaces for the Forms and Home for authentication, pdfgen.
 
 The team worked together to ensure seamless integration of the frontend and the backend. 
